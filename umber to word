@@ -1,88 +1,69 @@
-main
-system.out.
-
-class NumberToWord
-{
-private static final String[] specialNames = {
+class main {NumberToWord}
+void main
+{private static final String[] specialNames = {
 "", " тысяча", " миллион", " миллиард ",
 " триллион"};
 
-private static final String[] tensNames = {
-"",
-" десять", " двадцать", " тридцать", " сорок", " пятьдесят",
+private static final String[] tensNames = 
+{" десять", " двадцать", " тридцать", " сорок", " пятьдесят",
 " шестьдесят", " семьдесят", " восемтдесят", " девяносто"};
 
-private static final String[] numNames = {
-"", " один", " два", " три", " четыре", " пять", " шесть",
+private static final String[] numNames = 
+{"", " один", " два", " три", " четыре", " пять", " шесть",
 " семь", " восемьt", " девять", " десять", " одиннадцать", " двенадцать",
 " тринадцать", " четырнадцать", " пятнадцать", " шестнадцать",
 " семнадцаит", " восемнадцать", " девятнадцать"};
 
 private String convertLessThanOneThousand(int number)
-{
-String current;
+{String current;
 
 if (number % 100 < 20)
-{
-current = numNames[number % 100];
-number /= 100;
-}
+{current = numNames[number % 100];
+number /= 100;}
 else
-{
-current = numNames[number % 10];
+{current = numNames[number % 10];
 number /= 10;
 
 current = tensNames[number % 10] + current;
-number /= 10;
-}
+number /= 10;}
 
 if (number == 0)
 return current;
 
-return numNames[number] + " сто" + current;
-}
+return numNames[number] + " сто" + current;}
 
 public String convert(int number)
-{
-if (number == 0)
-{
-return "ноль";
-}
+
+{if (number == 0)
+{return "ноль";}
 
 String prefix = "";
 
 if (number < 0)
-{
-number = -number;
-prefix = "отрицательно";
-}
+{number = -number;
+prefix = "отрицательно";}
 
 String current = "";
 int place = 0;
 
 do
-{
-int n = number % 1000;
+{int n = number % 1000;
 if (n != 0)
-{
-String s = convertLessThanOneThousand(n);
-current = s + specialNames[place] + current;
-}
+
+{String s = convertLessThanOneThousand(n);
+current = s + specialNames[place] + current;}
+
 place++;
-number /= 1000;
-}
+number /= 1000;}
 while (number > 0);
 
-return (prefix + current).trim();
-}
+return (prefix + current).trim();}
 
 public static void main(String[] args)
-{
-System.out.print("Введите число: ");
+
+{System.out.print("Введите число: ");
 Scanner sc = new Scanner(System.in);
 int num = sc.nextInt();
 System.out.println();
 NumberToWord obj = new NumberToWord();
-System.out.println(num + " = " + obj.convert(num));
-}
-}
+System.out.println(num + " = " + obj.convert(num));}}
